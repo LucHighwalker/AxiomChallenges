@@ -12,7 +12,14 @@ def roman_to_arabic(roman):
   pass
 
 def roman_true_numbers(roman):
-  pass
+  roman = roman.upper()
+  array = []
+  for letter in roman:
+    try:
+      array.append(roman_dict[letter])
+    except KeyError:
+      return []
+  return array
 
 def compute_array(array):
   pass
