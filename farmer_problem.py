@@ -1,6 +1,7 @@
 def optimize_farm(total_acres, total_hours, corn_profit, oats_profit, corn_hours, oats_hours, accuracy=0.01):
     optimized = False
     divider = accuracy
+    most_profit = (0, 0, 0)
 
     while not optimized and divider <= 1:
       corn_acres = divider * total_acres
@@ -16,11 +17,14 @@ def optimize_farm(total_acres, total_hours, corn_profit, oats_profit, corn_hours
       else:
         total_corn_profit = corn_acres * corn_profit
         total_oats_profit = oats_acres * oats_profit
-        total_profit = total_corn_profit + total_oats_profit
+        total_profit = round(total_corn_profit + total_oats_profit, 2)
+
+        if total_profit > most_profit[0]:
+          most_profit = (total_profit, round(corn_acres, 2), round(oats_acres, 2))
         
       divider += accuracy
 
-    return (round(total_profit, 2), round(corn_acres, 2), round(oats_acres, 2))
+    return most_profit
 
 
 
